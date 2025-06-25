@@ -44,6 +44,7 @@ async function run() {
     const cursor = bulbcollection.find();
     const result = await cursor.toArray();
     res.send(result)
+    res.send('All Data')
    })     
 
     // Send a ping to confirm a successful connection
