@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config()
 const app = express();
 const port =process.env.PORT || 5000;
- const { MongoClient, ServerApiVersion } = require('mongodb');
+ const { MongoClient, ServerApiVersion, ObjectId} = require('mongodb');
 //middlwire
 app.use(cors());
 app.use(express.json())
@@ -29,10 +29,23 @@ async function run() {
     await client.connect();
     const bulbcollection = client.db('MjsDB').collection('Product')
     
+  app.get('/ledbulbs/:id',async(req,res)=>{
+    const id= req.params.id;
+    const query = {_id: new ObjectId(id)}
+    const result = await bulbcollection.findOne(query)
+    res.send(result)
+  })
 
+ /**==========delate items========== */
+    app.delete('/ledbulbs/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id:new ObjectId(id) }
+            const result = await bulbcollection.deleteOne(query)
+            res.send(result)
+    })
 
     //Post or add new bulb
-    app.post('/led-bulbs',async(req,res)=>{
+    app.post('/ledbulbs',async(req,res)=>{
          const newbulbs=req.body;
          res.send(newbulbs);
          const result = await bulbcollection.insertOne(newbulbs)
@@ -40,12 +53,13 @@ async function run() {
         })
 
    //Get all bulb 
-   app.get('/led-bulbs',async(req,res)=>{
+   app.get('/ledbulbs',async(req,res)=>{
     const cursor = bulbcollection.find();
     const result = await cursor.toArray();
     res.send(result)
     res.send('All Data')
    })     
+
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
