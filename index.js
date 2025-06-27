@@ -52,6 +52,18 @@ async function run() {
          res.send(result);
         })
 
+    // post or add addmin
+    app.get("/admin",async(req,res)=>{
+      const admin=[
+        {
+          name:'sadhin',
+          pass:'sadhin'
+        }
+      ]
+        res.send(admin)
+
+    })
+   
    //Get all bulb 
    app.get('/ledbulbs',async(req,res)=>{
     const cursor = bulbcollection.find();
