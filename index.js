@@ -56,8 +56,8 @@ async function run() {
     app.get("/admin",async(req,res)=>{
       const admin=[
         {
-          name:'sadhin',
-          pass:'sadhin'
+          name: `${process.env.ADMIN}`,
+          pass:`${process.env.PASS}`
         }
       ]
         res.send(admin)
@@ -71,6 +71,26 @@ async function run() {
     res.send(result)
     res.send('All Data')
    })     
+  //update bulbs items
+  app.put('/ledbulbs/:id',async(req,res)=>{
+    const id=req.params.id;
+    const filter ={_id : new ObjectId(id)};
+    const options={Upsert:true};
+    const updatebulbs = req.body;
+    const bulbs={
+      $set:{
+         name:updatebulbs.name,
+          price:updatebulbs.price,
+          Watt:updatebulbs.watt,
+          Lumen:updatebulbs.lumen,
+          gurantee:updatebulbs.gurantee,
+          details:updatebulbs.details,
+          photo:updatebulbs.photo
+    }
+  }
+  const  result = await bulbcollection.updateOne(filter,bulbs,options)
+ res.send(result);
+})
 
 
     // Send a ping to confirm a successful connection
