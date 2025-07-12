@@ -81,8 +81,8 @@ async function run() {
       $set:{
          name:updatebulbs.name,
           price:updatebulbs.price,
-          Watt:updatebulbs.watt,
-          Lumen:updatebulbs.lumen,
+          Watt:updatebulbs.Watt,
+          Lumen:updatebulbs.Lumen,
           gurantee:updatebulbs.gurantee,
           details:updatebulbs.details,
           photo:updatebulbs.photo
