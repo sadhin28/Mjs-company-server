@@ -56,16 +56,7 @@ async function run() {
         })
 
     // post or add addmin
-    app.get("/admin",async(req,res)=>{
-      const admin=[
-        {
-          name: `${process.env.ADMIN}`,
-          pass:`${process.env.PASS}`
-        }
-      ]
-        res.send(admin)
-
-    })
+   
    
    //Get all bulb 
    app.get('/ledbulbs',async(req,res)=>{
