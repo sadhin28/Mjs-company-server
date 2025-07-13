@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors');
 require('dotenv').config()
 const app = express();
-const port =process.env.PORT || 5000;
+const port = process.env.PORT || 5000 
  const { MongoClient, ServerApiVersion, ObjectId} = require('mongodb');
 //middlwire
 app.use(cors());
@@ -14,6 +14,7 @@ app.get('/',(req,res)=>{
 })
 
 /**============mongodb start============== */
+
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@user-management-system.h2w7at6.mongodb.net/?retryWrites=true&w=majority&appName=user-management-system`;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -43,10 +44,7 @@ async function run() {
             const result = await bulbcollection.deleteOne(query)
             res.send(result)
     })
-    //==========ping==========
-    app.get('/ping',(req,res)=>{
-      res.send('pong')
-    })
+  
     //Post or add new bulb
     app.post('/ledbulbs',async(req,res)=>{
          const newbulbs=req.body;
@@ -63,7 +61,7 @@ async function run() {
     const cursor = bulbcollection.find();
     const result = await cursor.toArray();
     res.send(result)
-    res.send('All Data')
+  
    })     
   //update bulbs items
   app.put('/ledbulbs/:id',async(req,res)=>{
