@@ -1,10 +1,7 @@
 {
-  
-  "name": "mjs-company-server",
-  "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -12,5 +9,6 @@
     "express": "^5.1.0",
     "mongodb": "^6.17.0",
     "render": "^0.1.4"
-  }
+  },
+  "main": "dist/index.js"
 }
