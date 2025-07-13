@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -11,5 +11,5 @@
     "nodemon": "^3.1.10",
     "render": "^0.1.4"
   },
-  "main": "dist/index.js"
+  "main": "index.js"
 }
