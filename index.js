@@ -43,7 +43,10 @@ async function run() {
             const result = await bulbcollection.deleteOne(query)
             res.send(result)
     })
-
+    //==========push==========
+    app.get('/ping',(req,res)=>{
+      res.send('pong')
+    })
     //Post or add new bulb
     app.post('/ledbulbs',async(req,res)=>{
          const newbulbs=req.body;
