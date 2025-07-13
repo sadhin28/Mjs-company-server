@@ -43,7 +43,7 @@ async function run() {
             const result = await bulbcollection.deleteOne(query)
             res.send(result)
     })
-    //==========push==========
+    //==========ping==========
     app.get('/ping',(req,res)=>{
       res.send('pong')
     })
