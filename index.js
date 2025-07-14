@@ -30,6 +30,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     const bulbcollection = client.db('MjsDB').collection('Product')
+    const usercollection = client.db('MJSUSER').collection('User')
     
   app.get('/ledbulbs/:id',async(req,res)=>{
     const id= req.params.id;
@@ -53,6 +54,12 @@ async function run() {
          const result = await bulbcollection.insertOne(newbulbs)
          res.send(result);
         })
+    app.post('/user',async(req,res)=>{
+         const newbulbs=req.body;
+         res.send(newbulbs);
+         const result = await usercollection.insertOne(newbulbs)
+         res.send(result);
+        })
 
     // post or add addmin
    
@@ -60,6 +67,12 @@ async function run() {
    //Get all bulb 
    app.get('/ledbulbs',async(req,res)=>{
     const cursor = bulbcollection.find();
+    const result = await cursor.toArray();
+    res.send(result)
+  
+   })     
+   app.get('/user',async(req,res)=>{
+    const cursor = usercollection.find();
     const result = await cursor.toArray();
     res.send(result)
   
