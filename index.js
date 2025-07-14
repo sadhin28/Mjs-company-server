@@ -38,12 +38,24 @@ async function run() {
     const result = await bulbcollection.findOne(query)
     res.send(result)
   })
+  app.get('/user/:id',async(req,res)=>{
+    const id= req.params.id;
+    const query = {_id: new ObjectId(id)}
+    const result = await usercollection.findOne(query)
+    res.send(result)
+  })
 
  /**==========delate items========== */
     app.delete('/ledbulbs/:id', async (req, res) => {
             const id = req.params.id
             const query = { _id:new ObjectId(id) }
             const result = await bulbcollection.deleteOne(query)
+            res.send(result)
+    })
+    app.delete('/user/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id:new ObjectId(id) }
+            const result = await usercollection.deleteOne(query)
             res.send(result)
     })
   
