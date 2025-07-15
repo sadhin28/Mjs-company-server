@@ -45,15 +45,15 @@ async function run() {
     res.send(result)
   })
   app.patch('/user',async(req,res)=>{
-     const email = req.body.email;
-     const filter = {email}
-     const updatedDoc={
-       $set:{
-         lastlogin: req.body.lastlogin
-       }
-     }
-     const result = await usercollection.updateOne(filter,updatedDoc)
-     res.send(result)
+    const email= req.body.email;
+    const filter = {email}
+    const updateDoc={
+      $set:{
+        lastSignInTime:req.body?.lastSignInTime
+      }
+    }
+    const result = await usercollection.updateOne(filter,updateDoc);
+    res.send(result)
   })
  /**==========delate items========== */
     app.delete('/ledbulbs/:id', async (req, res) => {
